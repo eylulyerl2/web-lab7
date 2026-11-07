@@ -2,3 +2,67 @@ body {
   margin: 0;
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 }
+
+.app {
+  --bg: #ffffff;
+  --text: #1f2328;
+  --muted: #57606a;
+  --surface: #f6f8fa;
+  --border: #d0d7de;
+  --accent: #0969da;
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--text);
+}
+
+a {
+  color: var(--accent);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.nav-links,
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: var(--text);
+}
+
+.navbar a.active {
+  color: var(--accent);
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.content {
+  flex: 1;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  box-sizing: border-box;
+}
+
+.footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  text-align: center;
+}
