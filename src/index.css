@@ -66,3 +66,36 @@ a {
   color: var(--muted);
   text-align: center;
 }
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.product-card {
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.product-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+.product-card h3 {
+  font-size: 1rem;
+  margin: 8px 0;
+}
+
+.category {
+  color: var(--muted);
+  text-transform: capitalize;
+}
+
+.price {
+  font-weight: bold;
+}
