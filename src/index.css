@@ -150,3 +150,32 @@ button {
   flex-direction: column;
   gap: 4px;
 }
+.cart-list {
+  list-style: none;
+  padding: 0;
+}
+
+.cart-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.cart-title {
+  flex: 1;
+  min-width: 160px;
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.total {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
