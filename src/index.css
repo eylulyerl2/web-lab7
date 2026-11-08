@@ -138,3 +138,15 @@ button {
   flex: 1;
   min-width: 240px;
 }
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 320px;
+}
+
+.login-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
