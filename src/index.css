@@ -3,14 +3,25 @@ body {
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 }
 
-.app {
+.theme-light {
   --bg: #ffffff;
   --text: #1f2328;
   --muted: #57606a;
   --surface: #f6f8fa;
   --border: #d0d7de;
   --accent: #0969da;
+}
 
+.theme-dark {
+  --bg: #0d1117;
+  --text: #e6edf3;
+  --muted: #9198a1;
+  --surface: #161b22;
+  --border: #30363d;
+  --accent: #4493f8;
+}
+
+.app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -99,6 +110,7 @@ a {
 .price {
   font-weight: bold;
 }
+
 button,
 input,
 select {
@@ -120,6 +132,7 @@ button {
   gap: 16px;
   margin-bottom: 20px;
 }
+
 .product-detail {
   display: flex;
   flex-wrap: wrap;
@@ -138,6 +151,7 @@ button {
   flex: 1;
   min-width: 240px;
 }
+
 .login-form {
   display: flex;
   flex-direction: column;
@@ -150,6 +164,7 @@ button {
   flex-direction: column;
   gap: 4px;
 }
+
 .cart-list {
   list-style: none;
   padding: 0;
