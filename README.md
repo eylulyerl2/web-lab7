@@ -74,3 +74,31 @@ The `id` from `useParams()` is always a **string**, for example `"3"`, even thou
 ### 6. Deep links
 
 On a plain static file server, reloading `/products/3` would return 404, because the server looks for a real file at that path and there is none. Only `index.html` exists, and the routing happens later in the browser. The Vite dev server works because it falls back to `index.html` for unknown paths. On a real host, the server needs a rewrite rule that sends every path to `index.html`.
+
+## Self-Study Notes
+
+### Updating one query-string parameter without losing the others
+From the React Router docs I learned that `setSearchParams` can take a function that receives the current parameters. In `ProductList.jsx` I copy them with `new URLSearchParams(previous)`, then only `set` or `delete` the one key that changed. This way changing the category keeps the search text and the other way around. I also pass `{ replace: true }` so typing in the search box doesn't add a new browser history entry for every letter.
+
+### Initialising store state from localStorage safely
+The stored value can be missing, invalid JSON, or something unexpected. In `cartStore.js` I read it in a `loadItems()` function wrapped in `try/catch`, check that the result is an array, and keep only items that have a valid `id`, `title`, `price` and `quantity`. If anything is wrong, the cart simply starts empty instead of crashing. From the Zustand docs I learned about `store.subscribe(listener)`. I use it to save the items back to `localStorage` outside React, and I compare `state.items` with `previousState.items` so it only writes when the cart actually changed.
+
+### Light/dark theme with a class name and CSS custom properties
+From MDN I learned how CSS custom properties work. In `index.css`, `.theme-light` and `.theme-dark` define the same variables (`--bg`, `--text`, `--surface`, ...) with different values, and all other styles only use `var(--...)`. `Layout` puts `theme-light` or `theme-dark` on the wrapper `div`, so switching one class changes every colour at once. The choice is stored with my `useLocalStorage` hook.
+
+### React Router package name
+`npm install react-router` installed version 8. Many older tutorials import from `react-router-dom`, but in the current versions everything (`BrowserRouter`, `NavLink`, `useSearchParams`, ...) is imported directly from `react-router`.
+
+## Challenges
+
+**1. Pasting code into the wrong file.**
+While adding the theme, I pasted the new CSS into `NavBar.jsx` instead of `index.css`, and the editor showed many errors. I put the correct component code back into `NavBar.jsx` and moved the CSS to `index.css`. Since then I check which tab is open and run `git status` before every commit.
+
+**2. Understanding the redirect after login.**
+After logging in I once ended up on `/products` and thought the redirect was wrong. Then I understood that I had pressed the browser's back button: because the login uses `navigate(..., { replace: true })`, the login page is removed from the history, so "back" skips it and goes to the page before. Without `replace`, "back" would show the login form again to a user who is already signed in.
+
+**3. Cart remembered, user forgotten.**
+After a reload the cart was still there but I was signed out. This is expected: the cart is saved to `localStorage`, but the user only lives in `AuthContext` in memory. The assignment only asks to remember the cart and the theme, so I kept it that way.
+
+**4. Hooks and early returns.**
+In `ProductList` and `Cart` I return early for the loading, error or empty states. I had to make sure every hook (`useFetch`, `useSearchParams`, the store selectors) is called before those `return` statements, otherwise the hooks would be called conditionally and break the Rules of Hooks.
